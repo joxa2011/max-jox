@@ -1,127 +1,146 @@
 <!DOCTYPE html>
 <html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <title>Ultimate Portfolio</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CineLux Pro</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<!-- PRELOADER -->
-<div id="preloader">
-    <div class="loader"></div>
-    <p>Yuklanmoqda...</p>
-</div>
+<!-- Fon musiqa -->
+<audio id="bgMusic" loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
 
-<!-- HEADER -->
-<header class="header">
-    <h1 class="logo">Joxa.developers</h1>
-    <nav>
-        <a href="#home">Bosh sahifa</a>
-        <a href="#about">Men haqimda</a>
-        <a href="#skills">Ko`nikmalar</a>
-        <a href="#projects">Loyihalar</a>
-        <a href="#stats">Stats</a>
-        <a href="#contact">Aloqa</a>
-        <button id="themeBtn">🌙</button>
-    </nav>
+<header class="navbar">
+    <h1>CineLux <span>🎬</span></h1>
+    <div class="nav-actions">
+        <select id="lang">
+            <option value="uz">UZ</option>
+            <option value="en">EN</option>
+            <option value="ru">RU</option>
+        </select>
+        <input type="text" id="search" placeholder="Kino qidirish...">
+    </div>
 </header>
 
-<!-- HERO -->
-<section id="home" class="hero">
-    <div class="hero-bg"></div>
-    <h2 class="hero-title">Professional Frontend Developer</h2>
-    <p class="hero-subtitle">
-        Zamonaviy, tezkor va animatsiyali web interfeyslar yarataman.
-    </p>
-    <button class="btn" id="toAbout">Batafsil</button>
+<!-- HERO + Slider -->
+<section class="hero">
+    <div class="slider" id="slider">
+        <div class="slide active">
+            <img src="" alt="Interstellar">
+            <div class="slide-info">
+                <h2>Interstellar</h2>
+                <p>Ilmiy-fantastik drama, kosmos va vaqt haqida</p>
+                <span>⭐ 8.6 | Sci-Fi | 2014</span>
+                <button onclick="openModal('zSWdZVtXT7E')">▶ Play</button>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="" alt="Joker">
+            <div class="slide-info">
+                <h2>Joker</h2>
+                <p>Yurakka ta’sir qiluvchi hikoya</p>
+                <span>⭐ 8.4 | Drama | 2019</span>
+                <button onclick="openModal('zAGVQLHvwOY')">▶ Play</button>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="" alt="Mad Max">
+            <div class="slide-info">
+                <h2>Mad Max</h2>
+                <p>Hayajonli va adrenalin to‘la film</p>
+                <span>⭐ 8.1 | Action | 2015</span>
+                <button onclick="openModal('hEJnMQG9ev8')">▶ Play</button>
+            </div>
+        </div>
+    </div>
+    <div class="slider-controls">
+        <button id="prev">◀</button>
+        <button id="next">▶</button>
+    </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about" class="section about">
-    <h2>Men haqimda</h2>
-    <div class="about-grid">
-        <div class="about-text">
-            <p>
-                Men frontend dasturchiman va web-dasturlash sohasida
-                mustahkam bilim va amaliy tajribaga ega bo‘lishni maqsad qilganman.
-            </p>
-            <p>
-                Asosan <b>HTML5</b>, <b>CSS3</b>, <b>JavaScript</b> bilan ishlayman.
-                Kod yozishda semantik tuzilma va optimallashtirishga e’tibor beraman.
-            </p>
-            <p>
-                Har bir loyiha foydalanuvchi uchun chiroyli, tez va tushunarli bo‘lishi kerak.
-            </p>
+<!-- Filters -->
+<section class="filters">
+    <button onclick="filterMovies('all')">Hammasi</button>
+    <button onclick="filterMovies('action')">Action</button>
+    <button onclick="filterMovies('drama')">Drama</button>
+    <button onclick="filterMovies('fantasy')">Fantasy</button>
+</section>
+
+<!-- Movies Grid -->
+<section class="movies" id="movies">
+    <div class="movie action">
+        <img src="" alt="Interstellar">
+        <div class="info">
+            <h3>Interstellar</h3>
+            <p>Ilmiy-fantastik drama, kosmos va vaqt haqida</p>
+            <span>⭐ 8.6 | Sci-Fi | 2014</span>
+            <button onclick="openModal('zSWdZVtXT7E')">▶ Play</button>
         </div>
-        <div class="about-cards">
-            <div class="about-card">👨‍💻 Frontend Developer</div>
-            <div class="about-card">🛠 HTML, CSS, JS</div>
-            <div class="about-card">📱 Responsive dizayn</div>
-            <div class="about-card">🎯 Professional maqsad</div>
+    </div>
+    <div class="movie drama">
+        <img src="" alt="Joker">
+        <div class="info">
+            <h3>Joker</h3>
+            <p>Yurakka ta’sir qiluvchi hikoya</p>
+            <span>⭐ 8.4 | Drama | 2019</span>
+            <button onclick="openModal('zAGVQLHvwOY')">▶ Play</button>
+        </div>
+    </div>
+    <div class="movie action">
+        <img src="" alt="Mad Max">
+        <div class="info">
+            <h3>Mad Max</h3>
+            <p>Hayajonli va adrenalin to‘la film</p>
+            <span>⭐ 8.1 | Action | 2015</span>
+            <button onclick="openModal('hEJnMQG9ev8')">▶ Play</button>
+        </div>
+    </div>
+    <div class="movie fantasy">
+        <img src="" alt="Fantasy">
+        <div class="info">
+            <h3>Fantasy World</h3>
+            <p>Sehrli olamga sayohat, vizual effektlar bilan</p>
+            <span>⭐ 7.9 | Fantasy | 2020</span>
+            <button onclick="openModal('abcd1234')">▶ Play</button>
         </div>
     </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills" class="section">
-    <h2>Ko‘nikmalar</h2>
-    <div class="skills">
-        <span class="skill">HTML5</span>
-        <span class="skill">CSS3</span>
-        <span class="skill">Flexbox & Grid</span>
-        <span class="skill">CSS Animations</span>
-        <span class="skill">JavaScript DOM</span>
-        <span class="skill">Responsive Design</span>
-    </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" class="section">
-    <h2>Loyihalar</h2>
-    <div class="project-container">
-        <div class="project">
-            <h3>Landing Page</h3>
-            <p class="desc">Animatsiyali va responsive landing page kompaniyalar uchun.</p>
+<!-- Actor Info -->
+<section class="actors">
+    <h2>Asosiy aktyorlar</h2>
+    <div class="actor-grid">
+        <div class="actor">
+            <img src="" alt="Actor1">
+            <h3>Matthew McConaughey</h3>
+            <p>Interstellar - Cooper</p>
         </div>
-        <div class="project">
-            <h3>Portfolio Web-sayt</h3>
-            <p class="desc">Dark mode, scroll animatsiya va interaktiv elementlar bilan.</p>
-        </div>
-        <div class="project">
-            <h3>Mini JS App</h3>
-            <p class="desc">Interaktiv mini ilova foydalanuvchi bilan muloqot qiladi.</p>
-        </div>
-        <div class="project">
-            <h3>Blog Platforma</h3>
-            <p class="desc">Responsive, tez va chiroyli blog sahifa dizayni.</p>
+        <div class="actor">
+            <img src="" alt="Actor2">
+            <h3>Joaquin Phoenix</h3>
+            <p>Joker - Arthur</p>
         </div>
     </div>
 </section>
 
-<!-- STATS -->
-<section id="stats" class="section stats">
-    <div class="stat"><h3 class="counter" data-target="30">0</h3><p>Loyihalar qilih</p></div>
-    <div class="stat"><h3 class="counter" data-target="2">0</h3><p>Oy tajribasi</p></div>
-    <div class="stat"><h3 class="counter" data-target="100">0</h3><p>100% Motivatsiya</p></div>
-</section>
+<!-- Modal -->
+<div class="modal" id="modal">
+    <span onclick="closeModal()">✖</span>
+    <iframe id="video" allowfullscreen></iframe>
+</div>
 
-<!-- CONTACT -->
-<section id="contact" class="section">
-    <h2>Aloqa</h2>
-    <p>Email: erkinovjahongir@gmail.com</p>
-    <p>Telegram: @JAXAjonm</p>
-    <p>Telefon: +998 90 521 73 73</p>
-</section>
-
-<footer class="footer">
-    <p>© 2025 Jahongir.developers | Ultimate Portfolio</p>
-</footer>
-
-<script src="javascript/java.js"></script>
+<script src="java.js"></script>
 </body>
 </html>
+
+
+
+
+
 
 
 
